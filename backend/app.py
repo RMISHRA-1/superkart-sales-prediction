@@ -10,11 +10,10 @@ superkart_api = Flask("SuperKart")
 
 # Load the trained model with error handling
 try:
-    # Corrected: Use a direct relative path for Colab execution
-    model_path = "backend_files/superkart_model.joblib"
+    model_path = os.path.join(os.path.dirname(__file__), "superkart_model.joblib")
     model = joblib.load(model_path)
 except FileNotFoundError:
-    raise Exception("superkart_model.joblib not found. Ensure it's in the 'backend_files' directory.")
+    raise Exception("superkart_model.joblib not found. Ensure it's in the backend directory.")
 except Exception as e:
     raise Exception(f"Error loading model: {str(e)}")
 
